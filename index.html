@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Cinta 💖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <style>
+        /* Animasi Background dengan Hati Berjatuhan */
+        body {
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(45deg, #ff7f7f, #ffb3b3);
+            background-size: 400% 400%;
+            animation: gradientBG 5s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.7;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) scale(1); opacity: 1; }
+            100% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+        }
+
+        /* Galeri */
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 80%;
+            text-align: center;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 40px;
+            color: #d94f6d;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        }
+
+        /* Popup */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+            display: none;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .popup img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+
+        .popup button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            border: none;
+            background: #ff4d6d;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Efek Hati Berjatuhan -->
+    <div class="hearts-container"></div>
+
+    <!-- Container Galeri -->
+    <div class="container">
+        <h1>Galeri Cinta 💕</h1>
+        <p>Kenangan manis kita yang tak terlupakan!</p>
+        <div class="gallery">
+            <img src="p4.jpg" onclick="showPopup(this.src)">
+            <img src="p10.jpg" onclick="showPopup(this.src)">
+            <img src="p6.jpg" onclick="showPopup(this.src)">
+            <img src="p7.jpg" onclick="showPopup(this.src)">
+            <img src="p8.jpg" onclick="showPopup(this.src)">
+            <img src="p9.jpg" onclick="showPopup(this.src)">
+            <img src="p11.jpg" onclick="showPopup(this.src)">
+            <img src="p5.jpg" onclick="showPopup(this.src)">
+            <img src="p12.jpg" onclick="showPopup(this.src)">
+        </div>
+    </div>
+
+    <!-- Popup untuk melihat gambar lebih besar -->
+    <div class="popup" id="popup">
+        <img id="popupImage">
+        <button onclick="closePopup()">Tutup</button>
+    </div>
+
+    <script>
+        // Efek Hati Berjatuhan
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 4 + 2) + "s";
+            heart.style.fontSize = Math.random() * 20 + 10 + "px";
+            document.querySelector(".hearts-container").appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+
+        // Fungsi untuk menampilkan popup gambar
+        function showPopup(src) {
+            document.getElementById("popupImage").src = src;
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
